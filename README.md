@@ -51,9 +51,20 @@ Si app.py est modifié cela fait un rebuild rapide. Sinon cela réinstalle toute
 
 5.6 Comme on n'envoie pas la variable d'environnement APP_ENV quand on lance le docker, la variable est la varaible par défaut dans le code, cela renvoie "Environnement : développement"
 
-5.7 L'image  pèse 197MB sur le disque. Pour réduire l'image, on pourrait de baser sur une image alpine et installé les dépendances minimales ou installé les dépendances dans une étape appart pour que les dépendances soient installés via le cache.
+5.7 L'image  pèse 197MB sur le disque. Pour réduire l'image, on pourrait de baser sur une image alpine et installé les dépendances minimales ou installé les dépendances dans une étape appart pour que les dépendances soient installés séparemment et donc pas a chaque lancement.
 
 
 
+EX6
 
+6.5 La commande est docker compose up -d, il faut la lancer à la racine du dossier, la ou est le docker-compose
 
+6.6 Actualiser permet d'incrémenter le compteur, alors que le /refresh refresh le compteur à 0.
+
+6.7 Le compteur n'est pas remis à 0 car ils se sont trouve dans un volume persistant. Les données sont enregistrés dans redis-data/data .
+
+6.8 La commande qui permet de voir les logs en temps réel est docker compose logs -f
+
+6.9 La commande qui permet d'entrer dans le conteneur web pour y ouvrir un shell interactif via Compose est docker compose exec web sh
+
+6.10 La commande qui supprime les conteneurs, réseaux et volumes de la stack est docker compose down -v
