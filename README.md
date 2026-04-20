@@ -68,3 +68,8 @@ EX6
 6.9 La commande qui permet d'entrer dans le conteneur web pour y ouvrir un shell interactif via Compose est docker compose exec web sh
 
 6.10 La commande qui supprime les conteneurs, réseaux et volumes de la stack est docker compose down -v
+
+
+EX7
+
+7.2 Le fichier .env contient des mots de passe et données snesible, il est préférable de ne pas le push sur un git pour une sécurité optimale.
