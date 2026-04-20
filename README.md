@@ -22,7 +22,7 @@ ex2
 
 ex3
 
-3.1 Le conteneur étant supprimé, le volule a été supprimé, donc le fichier aussi
+3.1 Le conteneur étant supprimé, le volume a été supprimé, donc le fichier aussi
 
 3.2 Le fichier html que j'ai créer est directement disponible via le navigateur, pas besoin de redémarrer ou de rebuild.
 
@@ -42,5 +42,18 @@ ex4
 4.5 Comme les réseaux docker sont isolés, la résolution DNS ne marche pas 
 
 4.6 La commande qui permet de connecter client-externe à mon-reseau après son démarrage est: docker network connect mon-reseau client-externe
+
+
+EX5
+
+5.3 L'odre permet d'optimiser le tempsde lancement et la modification avant lancement. Quand requirements.txt ne change pas, docker réutilise le layer pip install.
+Si app.py est modifié cela fait un rebuild rapide. Sinon cela réinstalle toutes les dépendances, c'est donc un peu pls lent.
+
+5.6 Comme on n'envoie pas la variable d'environnement APP_ENV quand on lance le docker, la variable est la varaible par défaut dans le code, cela renvoie "Environnement : développement"
+
+5.7 L'image  pèse 197MB sur le disque. Pour réduire l'image, on pourrait de baser sur une image alpine et installé les dépendances minimales ou installé les dépendances dans une étape appart pour que les dépendances soient installés via le cache.
+
+
+
 
 
