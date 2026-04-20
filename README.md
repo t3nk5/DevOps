@@ -16,4 +16,11 @@
 
 3.1 Le conteneur étant supprimé, le volule a été supprimé, donc le fichier aussi
 
-3.2 
+3.2 Le fichier html que j'ai créer est directement disponible via le navigateur, pas besoin de redémarrer ou de rebuild.
+
+3.5 Le contenu du fichier est perssistant
+
+3.6 Le volume est sauvegardé ici Mountpoint": "/var/lib/docker/volumes/mes-donnees/_data
+
+3.7 Le volume ne doit pas être utilisé actuellement. Il faut donc s'en assurer en regardant quel docker utilise le volume
+
