@@ -6,3 +6,8 @@
 
 1.8 docker run --rm -d -p 8080:80 nginx:alpine permet de supprimer le conteneur dès qu'il est down
 
+2.5 L'image alpine fait 26mb et monsite-v1 fait 26.9mb
+
+2.6 Un seul layer a été ajouté (le copy index.html)
+
+2.7 L'image Alpine a été télécharger depuis le cache alors que l'index.html que j'ai modifié a été réexécutée
