@@ -3,9 +3,9 @@
 Partie 1
 ex1
 
-1.3 docker ps permetde voir les conteneur up
+1.3 docker ps perme tde voir les conteneur lancés
 
-1.4 On peut voir la page de défaut 
+1.4 On peut voir la page de défaut nginx
 
 1.6 docker ps -a permet de lister tout les conteneurs, cela comprend ceux arrétés.
 
