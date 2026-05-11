@@ -100,7 +100,7 @@ scrape_configs:
 
 
  nano .\docker-compose.yaml
-PS C:\projects\cours\DevOps\tp2\ex1> docker run -d `
+ docker run -d `
 >>   --name prometheus `
 >>   -p 9090:9090 `
 >>   -v "C:\projects\cours\DevOps\tp2\ex1\prometheus.yml:/etc/prometheus/prometheus.yml" `
@@ -128,3 +128,42 @@ nano sd\targets.json
 
 
 EX5
+
+mkdir rules
+nano rules/api_rules.yml
+groups:
+  - name: api_rules
+    interval: 30s
+    rules:
+      - record: job:http_requests:rate5m
+        expr: rate(http_requests_total[5m])
+
+
+
+
+
+nano prometheus
+global:
+  scrape_interval: 10s
+
+  external_labels:
+    environment: lab
+
+rule_files:
+  - /etc/prometheus/rules/*.yml
+
+
+scrape_configs:
+  - job_name: "prometheus"
+    static_configs:
+      - targets: ["localhost:9090"]
+
+  - job_name: "node"
+    static_configs:
+      - targets: ["node-exporter:9100"]
+
+  - job_name: "file-sd"
+    file_sd_configs:
+      - files:
+          - /etc/prometheus/sd/*.json
+        refresh_interval: 5s
