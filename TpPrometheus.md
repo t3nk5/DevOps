@@ -1,4 +1,4 @@
-EX 1
+#'EX 1'
 docker pull prom/prometheus:latest
 
 docker run -d --name prometheus -p 9090:9090 prom/prometheus:latest
