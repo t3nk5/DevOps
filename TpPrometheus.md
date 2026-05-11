@@ -49,6 +49,7 @@ Invoke-WebRequest -Method POST http://localhost:9090/-/reload
 <img width="2710" height="190" alt="image" src="https://github.com/user-attachments/assets/f8a2907b-d048-4b52-8dae-5eae9ab92975" />
 <img width="869" height="390" alt="image" src="https://github.com/user-attachments/assets/3e64e0c7-a0a9-4727-8ce6-d957d2f07439" />
 
+EX3
 
 docker run -d --name node-exporter -p 9100:9100 prom/node-exporter:latest
 nano prometheus.yml
@@ -74,3 +75,56 @@ scrape_configs:
 
 <img width="2738" height="554" alt="image" src="https://github.com/user-attachments/assets/5a86a064-1370-4d44-8a96-f5ce5632600e" />
 
+EX4
+
+global:
+  scrape_interval: 10s
+
+  external_labels:
+    environment: lab
+
+scrape_configs:
+  - job_name: "prometheus"
+    static_configs:
+      - targets: ["localhost:9090"]
+
+  - job_name: "node"
+    static_configs:
+      - targets: ["node-exporter:9100"]
+
+  - job_name: "file-sd"
+    file_sd_configs:
+      - files:
+          - /etc/prometheus/sd/*.json
+        refresh_interval: 5s
+
+
+ nano .\docker-compose.yaml
+PS C:\projects\cours\DevOps\tp2\ex1> docker run -d `
+>>   --name prometheus `
+>>   -p 9090:9090 `
+>>   -v "C:\projects\cours\DevOps\tp2\ex1\prometheus.yml:/etc/prometheus/prometheus.yml" `
+>>   prom/prometheus:latest `
+>>   --config.file=/etc/prometheus/prometheus.yml `
+>>   --web.enable-lifecycle
+
+
+
+nano sd\targets.json
+[
+  {
+    "targets": ["host.docker.internal:9090"],
+    "labels": {
+      "job": "prometheus"
+    }
+  },
+  {
+    "targets": ["host.docker.internal:9100"],
+    "labels": {
+      "job": "node"
+    }
+  }
+]
+
+
+EX5
